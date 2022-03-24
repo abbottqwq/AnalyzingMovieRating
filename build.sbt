@@ -11,6 +11,7 @@ lazy val root = (project in file("."))
 		name := "AnalyzingMovieRating"
 	).settings(
 	libraryDependencies += "org.scalatest" %% "scalatest" % scalaTestVersion % "test",
+	libraryDependencies += "org.scalatest" %% "scalatest-flatspec" % scalaTestVersion % "test",
 	libraryDependencies += "org.apache.spark" %% "spark-core" % sparkVersion,
 	libraryDependencies += "org.apache.spark" %% "spark-sql" % sparkVersion
 )
