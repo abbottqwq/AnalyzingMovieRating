@@ -34,8 +34,8 @@ class MovieRatingAnalyserTester extends AnyFlatSpec with Matchers with BeforeAnd
 	it should "right mean and std" in {
 		val m = MovieRatingAnalyser("src/main/resources/movie_metadata.csv")
 		m.getAvg("imdb_score").show()
-		m.getAvg("imdb_score").first().getDouble(0) shouldBe 6.4 +- 0.5
-		m.getStddev("imdb_score").first().getDouble(0) shouldBe 1.0 +- 0.1
+		m.getAvg("imdb_score").first().getDouble(0) shouldBe 6.45 +- 0.01
+		m.getStddev("imdb_score").first().getDouble(0) shouldBe 0.99 +- 0.01
 	}
 
 }
