@@ -30,7 +30,7 @@ case class MovieRatingAnalyser(resource: String) {
 object MovieRatingAnalyser extends App {
 	def apply(resource: String): MovieRatingAnalyser = new MovieRatingAnalyser(resource)
 
-	val ma = apply("src/main/resources/movie_metadata.csv")
+	val ma = apply("src/main/resources/movie_metadata.csv") // from the one in the repository: https://github.com/rchillyard/CSYE7200/blob/Spring2022/spark-csv/src/main/resources/movie_metadata.csv
 	ma.getAvg("imdb_score").show()
 	ma.getStddev("imdb_score").show()
 }
