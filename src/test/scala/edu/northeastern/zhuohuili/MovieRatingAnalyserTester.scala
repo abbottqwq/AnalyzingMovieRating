@@ -1,12 +1,13 @@
 package edu.northeastern.zhuohuili
 
-import org.scalatest.BeforeAndAfter
-import org.scalatest.matchers.should.Matchers
 import org.apache.spark.sql.SparkSession
+import org.scalatest.BeforeAndAfter
 import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
-object MovieRatingAnalyserTester extends AnyFlatSpec with Matchers with BeforeAndAfter {
+class MovieRatingAnalyserTester extends AnyFlatSpec with Matchers with BeforeAndAfter {
 	implicit var spark: SparkSession = _
+
 	before {
 		spark = SparkSession
 			.builder()
@@ -14,6 +15,7 @@ object MovieRatingAnalyserTester extends AnyFlatSpec with Matchers with BeforeAn
 			.master("local[*]")
 			.getOrCreate()
 		spark.sparkContext.setLogLevel("ERROR")
+
 	}
 	after {
 		if (spark != null) {
@@ -25,14 +27,15 @@ object MovieRatingAnalyserTester extends AnyFlatSpec with Matchers with BeforeAn
 
 	it should "read data from csv file correctly" in {
 		val m = MovieRatingAnalyser("src/main/resources/movie_metadata.csv")
-		m.moviesDF.count() should matchPattern { case a: Int if a > 0 => }
-		m.moviesDF.show()
+		m.moviesDF.count() should matchPattern { case a: Long if a > 0 => }
 	}
+
 
 	it should "right mean and std" in {
 		val m = MovieRatingAnalyser("src/main/resources/movie_metadata.csv")
-		m.getAvg("imdb_score") shouldBe 6.4 +- 0.5
-		m.getStddev("imdb_score") shouldBe 1.0 +- 0.1
+		m.getAvg("imdb_score").show()
+		m.getAvg("imdb_score").first().getDouble(0) shouldBe 6.4 +- 0.5
+		m.getStddev("imdb_score").first().getDouble(0) shouldBe 1.0 +- 0.1
 	}
 
 }
