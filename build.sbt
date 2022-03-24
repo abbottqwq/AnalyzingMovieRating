@@ -14,7 +14,9 @@ name := "AnalyzingMovieRating"
 libraryDependencies ++= Seq(
 	"org.apache.spark" %% "spark-core" % sparkVersion,
 	"org.apache.spark" %% "spark-sql" % sparkVersion,
+	"org.scalactic" %% "scalactic" % "3.2.11",
+	"org.scalatest" %% "scalatest" % "3.2.11" % "test",
+	"org.scalatest" %% "scalatest-flatspec" % "3.2.11" % "test"
+
 )
-libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.11"
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.11" % "test"
-libraryDependencies += "org.scalatest" %% "scalatest-flatspec" % "3.2.11" % "test"
+
