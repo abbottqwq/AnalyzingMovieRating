@@ -1,4 +1,4 @@
-package Assignment
+package edu.northeastern.zhuohuili
 
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions._
